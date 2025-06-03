@@ -281,7 +281,7 @@ def computeBias(stimulus_mapped_to_grid,
 
     volume_element = SENSORY_SPACE_VOLUME_NORMALIZED * torch.softmax(model_parameters["volume_raw"], dim=0)
     F = torch.cat([MakeZeros(1).to(DEVICE), torch.cumsum(volume_element, dim=0)], dim=0)
-    prior = 2-(torch.sin(grid*math.pi/180).abs())
+    prior = 2-(torch.sin(2*grid*math.pi/180).abs())
     prior = prior/prior.sum()
     model_parameters['prior_raw'] = torch.log(prior)
 

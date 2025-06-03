@@ -4,17 +4,33 @@ import numpy as np
 import math
 import os
 import matplotlib.pyplot as plt
+import sys
 
 # --- 1. Configuration based on the filename ---
 # Filename: run_noel_analysis.py_G1_B1_P2_F2_R0.01_GR60_params.pt
-# From this, we infer:
-GROUP_ID = 1      # ASD
-BLOCK_ID_VAL = 1  # wFB1
-P_VAL = 2         # L2 loss (posterior mean)
-FOLD_HERE = 2
-REG_WEIGHT = 0.1
-GRID_SIZE = 60    # GR60
-DEVICE = 'cpu'    # Always load to CPU for analysis portability
+# # From this, we infer:
+# GROUP_ID = 0      # ASD
+# BLOCK_ID_VAL = 1  # wFB1
+# P_VAL = 2         # L2 loss (posterior mean)
+# FOLD_HERE = 2
+# REG_WEIGHT = 0.1
+# GRID_SIZE = 60    # GR60
+# DEVICE = 'cpu'    # Always load to CPU for analysis portability
+if len(sys.argv) != 8:
+        print("Usage: python script_name.py <GROUP_ID> <BLOCK_ID> <P_VAL> <FOLD_HERE> <REG_WEIGHT> <GRID_SIZE> <DEVICE>")
+        print("  GROUP_ID: 0 for TD, 1 for ASD")
+        print("  BLOCK_ID: 0 for woFB, 1 for wFB1, 2 for wFB2")
+        print("  P_VAL: Loss exponent (0 for MAP, >0 for Lp/Cosine)")
+        print("  DEVICE: 'cpu' or 'cuda'")
+        sys.exit(1)
+
+GROUP_ID = int(sys.argv[1])
+BLOCK_ID_VAL = int(sys.argv[2]) # Renamed to avoid conflict
+P_VAL = int(sys.argv[3])
+FOLD_HERE = int(sys.argv[4])
+REG_WEIGHT = float(sys.argv[5])
+GRID_SIZE = int(sys.argv[6])
+DEVICE = sys.argv[7]
 
 # --- Fixed experimental/model parameters (must match fitting script) ---
 MIN_GRID = 0.0
