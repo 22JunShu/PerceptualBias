@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 # --- 1. Configuration based on the filename ---
 # Filename: run_noel_analysis.py_G1_B1_P2_F2_R0.01_GR60_params.pt
 # From this, we infer:
-GROUP_ID = 0      # ASD
+GROUP_ID = 1      # ASD
 BLOCK_ID_VAL = 1  # wFB1
 P_VAL = 2         # L2 loss (posterior mean)
 FOLD_HERE = 2
