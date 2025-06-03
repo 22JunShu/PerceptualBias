@@ -92,3 +92,10 @@ Command-Line Parameters Explained:
   - Number of points for discretizing the 0-360 degree orientation space.
 - **DEVICE** (String):
   - 'cpu' or 'cuda'.
+
+## Other settings
+```
+python run_noel_uniform_prior.py "F:/Courses2025/认知建模基础/ASD_Encoding_2020/" 1 1 2 2 0.1 60 cpu
+python run_noel_uniform_encoding.py "F:/Courses2025/认知建模基础/ASD_Encoding_2020/" 1 1 2 2 0.1 60 cpu
+python run_noel_natural_prior.py "F:/Courses2025/认知建模基础/ASD_Encoding_2020/" 1 1 2 2 0.1 60 cpu
+```

@@ -27,12 +27,15 @@ STIMULUS_STEP = MAX_GRID / GRID_SIZE
 # You might need to adjust this base path if your notebook is not in the same relative location as the fitting script's execution
 base_output_dir = "." # Assuming the params_G... folders are in the current directory or specify full path
 
-script_name_base = "run_noel_analysis.py" # Base name of your fitting script
+script_name_base_list = ["run_noel_uniform_encoding.py", "run_noel_uniform_prior.py","run_noel_analysis.py", "run_noel_natural_prior.py"]
+script_name_base = script_name_base_list[3] #"run_noel_uniform_encoding.py" # Base name of your fitting script
 
 param_dir = os.path.join(base_output_dir, f"params_G{GROUP_ID}_B{BLOCK_ID_VAL}_P{P_VAL}/")
 # The predictions file should have the same base name and be in the same directory
 run_details_suffix = f"_G{GROUP_ID}_B{BLOCK_ID_VAL}_P{P_VAL}_F{FOLD_HERE}_R{REG_WEIGHT}_GR{GRID_SIZE}"
 losses_dir = f"losses_G{GROUP_ID}_B{BLOCK_ID_VAL}_P{P_VAL}/"
+figure_dir = f"figures_G{GROUP_ID}_B{BLOCK_ID_VAL}_P{P_VAL}/"
+os.makedirs(figure_dir, exist_ok=True)
 
 # Construct the specific part of the filename
 run_details_suffix = f"_G{GROUP_ID}_B{BLOCK_ID_VAL}_P{P_VAL}_F{FOLD_HERE}_R{REG_WEIGHT}_GR{GRID_SIZE}"
@@ -257,7 +260,9 @@ if loaded_parameters and grid_loaded_np is not None:
 
 
     plt.tight_layout(rect=[0, 0, 1, 0.96]) # Adjust layout to make space for suptitle
-    plt.savefig(f"figures_G{GROUP_ID}_B{BLOCK_ID_VAL}_P{P_VAL}.jpg")
+    #os.makedirs("figures_G{GROUP_ID}_B{BLOCK_ID_VAL}_P{P_VAL}", exist_ok=True)
+    #plt.savefig(f"figures_G{GROUP_ID}_B{BLOCK_ID_VAL}_P{P_VAL}.jpg")
+    plt.savefig(f"{figure_dir}{script_name_base}{run_details_suffix}.jpg")
     plt.show()
 
 else:
